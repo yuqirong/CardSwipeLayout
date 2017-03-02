@@ -1,5 +1,6 @@
 package com.yuqirong.lib;
 
+import android.support.annotation.NonNull;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -18,7 +19,7 @@ public class CardLayoutManager extends RecyclerView.LayoutManager {
     private RecyclerView mRecyclerView;
     private ItemTouchHelper mItemTouchHelper;
 
-    public CardLayoutManager(RecyclerView recyclerView, ItemTouchHelper itemTouchHelper) {
+    public CardLayoutManager(@NonNull RecyclerView recyclerView, @NonNull ItemTouchHelper itemTouchHelper) {
         this.mRecyclerView = checkIsNull(recyclerView);
         this.mItemTouchHelper = checkIsNull(itemTouchHelper);
     }

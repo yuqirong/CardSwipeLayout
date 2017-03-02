@@ -74,12 +74,30 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {
-
+                viewHolder.itemView.setAlpha(1 - Math.abs(ratio) + 0.2f);
             }
 
             @Override
-            public void onSwiped(String o, int direction) {
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, String o, int direction) {
+                viewHolder.itemView.setAlpha(1f);
                 Toast.makeText(MainActivity.this, direction == CardConfig.SWIPED_LEFT ? "left" : "right", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSwipedClear() {
+                Toast.makeText(MainActivity.this, "data clear", Toast.LENGTH_SHORT).show();
+                recyclerView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        list.add("A");
+                        list.add("B");
+                        list.add("C");
+                        list.add("D");
+                        list.add("E");
+                        list.add("F");
+                        recyclerView.getAdapter().notifyDataSetChanged();
+                    }
+                }, 3000L);
             }
 
         });

@@ -1,6 +1,7 @@
 package com.yuqirong.lib;
 
 import android.graphics.Canvas;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
@@ -19,16 +20,22 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
     private List<T> dataList;
     private OnSwipeListener<T> mListener;
 
-
-    public CardItemTouchHelperCallback(RecyclerView.Adapter adapter, List<T> dataList) {
-        this.adapter = adapter;
-        this.dataList = dataList;
+    public CardItemTouchHelperCallback(@NonNull RecyclerView.Adapter adapter, @NonNull List<T> dataList) {
+        this.adapter = checkIsNull(adapter);
+        this.dataList = checkIsNull(dataList);
     }
 
-    public CardItemTouchHelperCallback(RecyclerView.Adapter adapter, List<T> dataList, OnSwipeListener<T> listener) {
-        this.adapter = adapter;
-        this.dataList = dataList;
+    public CardItemTouchHelperCallback(@NonNull RecyclerView.Adapter adapter, @NonNull List<T> dataList, OnSwipeListener<T> listener) {
+        this.adapter = checkIsNull(adapter);
+        this.dataList = checkIsNull(dataList);
         this.mListener = listener;
+    }
+
+    private <T> T checkIsNull(T t) {
+        if (t == null) {
+            throw new NullPointerException();
+        }
+        return t;
     }
 
     public void setOnSwipedListener(OnSwipeListener<T> mListener) {
@@ -57,7 +64,13 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
         T remove = dataList.remove(layoutPosition);
         adapter.notifyDataSetChanged();
         if (mListener != null) {
-            mListener.onSwiped(remove, direction == ItemTouchHelper.LEFT ? CardConfig.SWIPED_LEFT : CardConfig.SWIPED_RIGHT);
+            mListener.onSwiped(viewHolder,remove, direction == ItemTouchHelper.LEFT ? CardConfig.SWIPED_LEFT : CardConfig.SWIPED_RIGHT);
+        }
+        // 当没有数据时回调 mListener
+        if (adapter.getItemCount() == 0) {
+            if (mListener != null) {
+                mListener.onSwipedClear();
+            }
         }
     }
 
