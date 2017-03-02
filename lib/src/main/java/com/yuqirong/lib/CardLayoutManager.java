@@ -49,7 +49,7 @@ public class CardLayoutManager extends RecyclerView.LayoutManager {
                 measureChildWithMargins(view, 0, 0);
                 int widthSpace = getWidth() - getDecoratedMeasuredWidth(view);
                 int heightSpace = getHeight() - getDecoratedMeasuredHeight(view);
-
+                // recyclerview 布局
                 layoutDecoratedWithMargins(view, widthSpace / 2, heightSpace / 2,
                         widthSpace / 2 + getDecoratedMeasuredWidth(view),
                         heightSpace / 2 + getDecoratedMeasuredHeight(view));
@@ -57,11 +57,11 @@ public class CardLayoutManager extends RecyclerView.LayoutManager {
                 if (position == CardConfig.DEFAULT_SHOW_ITEM) {
                     view.setScaleX(1 - (position - 1) * CardConfig.DEFAULT_SCALE);
                     view.setScaleY(1 - (position - 1) * CardConfig.DEFAULT_SCALE);
-                    view.setTranslationY((position - 1) * 75);
+                    view.setTranslationY((position - 1) * view.getMeasuredHeight() / CardConfig.DEFAULT_TRANSLATE_Y);
                 } else if (position > 0) {
                     view.setScaleX(1 - position * CardConfig.DEFAULT_SCALE);
                     view.setScaleY(1 - position * CardConfig.DEFAULT_SCALE);
-                    view.setTranslationY(position * 75);
+                    view.setTranslationY(position * view.getMeasuredHeight() / CardConfig.DEFAULT_TRANSLATE_Y);
                 } else {
                     view.setOnTouchListener(mOnTouchListener);
                 }
@@ -74,14 +74,15 @@ public class CardLayoutManager extends RecyclerView.LayoutManager {
                 measureChildWithMargins(view, 0, 0);
                 int widthSpace = getWidth() - getDecoratedMeasuredWidth(view);
                 int heightSpace = getHeight() - getDecoratedMeasuredHeight(view);
-
+                // recyclerview 布局
                 layoutDecoratedWithMargins(view, widthSpace / 2, heightSpace / 2,
                         widthSpace / 2 + getDecoratedMeasuredWidth(view),
                         heightSpace / 2 + getDecoratedMeasuredHeight(view));
+
                 if (position > 0) {
                     view.setScaleX(1 - position * CardConfig.DEFAULT_SCALE);
                     view.setScaleY(1 - position * CardConfig.DEFAULT_SCALE);
-                    view.setTranslationY(position * 75);
+                    view.setTranslationY(position * view.getMeasuredHeight() / CardConfig.DEFAULT_TRANSLATE_Y);
                 } else {
                     view.setOnTouchListener(mOnTouchListener);
                 }
