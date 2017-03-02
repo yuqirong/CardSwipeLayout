@@ -1,10 +1,9 @@
-package com.yuqirong.lib;
+package me.yuqirong.cardswipeview;
 
 import android.graphics.Canvas;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.View;
 
 import java.util.List;

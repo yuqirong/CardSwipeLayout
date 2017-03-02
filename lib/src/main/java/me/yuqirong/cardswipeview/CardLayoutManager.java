@@ -1,4 +1,4 @@
-package com.yuqirong.lib;
+package me.yuqirong.cardswipeview;
 
 import android.support.annotation.NonNull;
 import android.support.v4.view.MotionEventCompat;

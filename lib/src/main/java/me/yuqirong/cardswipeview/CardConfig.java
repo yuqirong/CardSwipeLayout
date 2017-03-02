@@ -1,4 +1,4 @@
-package com.yuqirong.lib;
+package me.yuqirong.cardswipeview;
 
 /**
  * @author maomao

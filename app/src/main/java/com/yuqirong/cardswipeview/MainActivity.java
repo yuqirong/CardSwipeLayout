@@ -13,13 +13,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.yuqirong.lib.CardConfig;
-import com.yuqirong.lib.CardItemTouchHelperCallback;
-import com.yuqirong.lib.CardLayoutManager;
-import com.yuqirong.lib.OnSwipeListener;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import me.yuqirong.cardswipeview.CardConfig;
+import me.yuqirong.cardswipeview.CardItemTouchHelperCallback;
+import me.yuqirong.cardswipeview.CardLayoutManager;
+import me.yuqirong.cardswipeview.OnSwipeListener;
 
 public class MainActivity extends AppCompatActivity {
 

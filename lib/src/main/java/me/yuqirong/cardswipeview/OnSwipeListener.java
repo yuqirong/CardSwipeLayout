@@ -1,4 +1,4 @@
-package com.yuqirong.lib;
+package me.yuqirong.cardswipeview;
 
 import android.support.v7.widget.RecyclerView;
 
