@@ -1,4 +1,4 @@
-package com.yuqirong.cardslideview;
+package com.yuqirong.cardswipeview;
 
 import org.junit.Test;
 
