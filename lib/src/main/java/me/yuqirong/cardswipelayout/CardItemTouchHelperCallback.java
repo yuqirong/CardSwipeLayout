@@ -1,4 +1,4 @@
-package me.yuqirong.cardswipeview;
+package me.yuqirong.cardswipelayout;
 
 import android.graphics.Canvas;
 import android.support.annotation.NonNull;
@@ -9,9 +9,7 @@ import android.view.View;
 import java.util.List;
 
 /**
- * @author maomao
- * @email qirong.yu@jubaobar.com
- * @date 2017-3-2
+ * @author yuqirong
  */
 
 public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {

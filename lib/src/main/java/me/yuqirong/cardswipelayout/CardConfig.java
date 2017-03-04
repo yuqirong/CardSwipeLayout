@@ -1,9 +1,7 @@
-package me.yuqirong.cardswipeview;
+package me.yuqirong.cardswipelayout;
 
 /**
- * @author maomao
- * @email qirong.yu@jubaobar.com
- * @date 2017-3-2
+ * @author yuqirong
  */
 
 public interface CardConfig {

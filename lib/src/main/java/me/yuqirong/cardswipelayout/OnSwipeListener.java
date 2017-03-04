@@ -1,11 +1,9 @@
-package me.yuqirong.cardswipeview;
+package me.yuqirong.cardswipelayout;
 
 import android.support.v7.widget.RecyclerView;
 
 /**
- * @author maomao
- * @email qirong.yu@jubaobar.com
- * @date 2017-3-2
+ * @author yuqirong
  */
 
 public interface OnSwipeListener<T> {

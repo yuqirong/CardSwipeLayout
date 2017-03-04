@@ -1,4 +1,4 @@
-package me.yuqirong.cardswipeview;
+package me.yuqirong.cardswipelayout;
 
 import android.support.annotation.NonNull;
 import android.support.v4.view.MotionEventCompat;
@@ -9,9 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * @author maomao
- * @email qirong.yu@jubaobar.com
- * @date 2017-3-2
+ * @author yuqirong
  */
 
 public class CardLayoutManager extends RecyclerView.LayoutManager {
