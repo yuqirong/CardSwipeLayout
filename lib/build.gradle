@@ -37,5 +37,5 @@ publish {
     artifactId = 'cardswipelayout'
     publishVersion = '1.0.0'
     desc = 'the layoutmanager of recyclerview can swipe items'
-    website = 'https://github.com/yuqirong/CardSwipeView'
+    website = 'https://github.com/yuqirong/CardSwipeLayout'
 }

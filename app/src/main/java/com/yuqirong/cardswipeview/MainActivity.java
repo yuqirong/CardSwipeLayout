@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import me.yuqirong.cardswipelayout.OnSwipeListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<String> list = new ArrayList<>();
+    private List<Integer> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,29 +37,29 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(new MyAdapter());
         CardItemTouchHelperCallback cardCallback = new CardItemTouchHelperCallback(recyclerView.getAdapter(), list);
-        cardCallback.setOnSwipedListener(new OnSwipeListener<String>() {
+        cardCallback.setOnSwipedListener(new OnSwipeListener<Integer>() {
 
             @Override
             public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {
                 MyAdapter.MyViewHolder myHolder = (MyAdapter.MyViewHolder) viewHolder;
                 viewHolder.itemView.setAlpha(1 - Math.abs(ratio) * 0.2f);
-                if(direction == CardConfig.SWIPING_LEFT){
+                if (direction == CardConfig.SWIPING_LEFT) {
                     myHolder.dislikeImageView.setAlpha(Math.abs(ratio));
-                }else if(direction == CardConfig.SWIPING_RIGHT){
+                } else if (direction == CardConfig.SWIPING_RIGHT) {
                     myHolder.likeImageView.setAlpha(Math.abs(ratio));
-                }else{
+                } else {
                     myHolder.dislikeImageView.setAlpha(0f);
                     myHolder.likeImageView.setAlpha(0f);
                 }
             }
 
             @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, String o, int direction) {
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, Integer o, int direction) {
                 MyAdapter.MyViewHolder myHolder = (MyAdapter.MyViewHolder) viewHolder;
                 viewHolder.itemView.setAlpha(1f);
                 myHolder.dislikeImageView.setAlpha(0f);
                 myHolder.likeImageView.setAlpha(0f);
-                Toast.makeText(MainActivity.this, direction == CardConfig.SWIPED_LEFT ? "left" : "right", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, direction == CardConfig.SWIPED_LEFT ? "swiped left" : "swiped right", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -83,12 +82,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        list.add("A");
-        list.add("B");
-        list.add("C");
-        list.add("D");
-        list.add("E");
-        list.add("F");
+        list.add(R.drawable.img_avatar_01);
+        list.add(R.drawable.img_avatar_02);
+        list.add(R.drawable.img_avatar_03);
+        list.add(R.drawable.img_avatar_04);
+        list.add(R.drawable.img_avatar_05);
+        list.add(R.drawable.img_avatar_06);
+        list.add(R.drawable.img_avatar_07);
     }
 
     private class MyAdapter extends RecyclerView.Adapter {
@@ -100,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-//            TextView textView = ((MyViewHolder) holder).textView;
-//            textView.append(list.get(position));
+            ImageView avatarImageView = ((MyViewHolder) holder).avatarImageView;
+            avatarImageView.setImageResource(list.get(position));
         }
 
         @Override
@@ -111,13 +111,13 @@ public class MainActivity extends AppCompatActivity {
 
         class MyViewHolder extends RecyclerView.ViewHolder {
 
-            TextView textView;
+            ImageView avatarImageView;
             ImageView likeImageView;
             ImageView dislikeImageView;
 
             MyViewHolder(View itemView) {
                 super(itemView);
-                textView = (TextView) itemView.findViewById(R.id.tv_name);
+                avatarImageView = (ImageView) itemView.findViewById(R.id.iv_avatar);
                 likeImageView = (ImageView) itemView.findViewById(R.id.iv_like);
                 dislikeImageView = (ImageView) itemView.findViewById(R.id.iv_dislike);
             }
