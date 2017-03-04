@@ -9,9 +9,7 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 /**
- * @author maomao
- * @email qirong.yu@jubaobar.com
- * @date 2017-3-3
+ * @author yuqirong
  */
 
 public class RoundImageView extends ImageView {

@@ -15,10 +15,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.yuqirong.cardswipeview.CardConfig;
-import me.yuqirong.cardswipeview.CardItemTouchHelperCallback;
-import me.yuqirong.cardswipeview.CardLayoutManager;
-import me.yuqirong.cardswipeview.OnSwipeListener;
+import me.yuqirong.cardswipelayout.CardConfig;
+import me.yuqirong.cardswipelayout.CardItemTouchHelperCallback;
+import me.yuqirong.cardswipelayout.CardLayoutManager;
+import me.yuqirong.cardswipelayout.OnSwipeListener;
+
 
 public class MainActivity extends AppCompatActivity {
 
