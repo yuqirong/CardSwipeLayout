@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="336dp"
     android:layout_height="426dp"
-    android:background="@drawable/shape_background"
-    android:elevation="4dp"
+    android:background="@drawable/img_card_background"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -18,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            app:radius="5dp"
+            app:radius="7.5dp"
             android:src="@drawable/img_avatar_01" />
 
         <ImageView

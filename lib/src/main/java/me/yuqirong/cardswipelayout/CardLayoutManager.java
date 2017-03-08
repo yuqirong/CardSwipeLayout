@@ -37,6 +37,8 @@ public class CardLayoutManager extends RecyclerView.LayoutManager {
     @Override
     public void onLayoutChildren(final RecyclerView.Recycler recycler, RecyclerView.State state) {
         super.onLayoutChildren(recycler, state);
+        // 先移除所有view
+        removeAllViews();
         detachAndScrapAttachedViews(recycler);
         int itemCount = getItemCount();
         // 当数据源个数大于最大显示数时
