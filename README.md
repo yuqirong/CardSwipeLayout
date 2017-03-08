@@ -1,6 +1,6 @@
 #CardSwipeLayout
 
-[![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php)
 
 ##Introduction
 CardSwipeLayout - Use RecyclerView to achieve card swipe layout , like [Tantan](http://tantanapp.com/) .
@@ -62,6 +62,7 @@ cardCallback.setOnSwipedListener(new OnSwipeListener<T>() {
     public void onSwiped(RecyclerView.ViewHolder viewHolder, T t, int direction) {
 	    /**
 	     *  will callback when the card swiped from screen by user
+	     *  you can also clean animation from the itemview of viewHolder in this method
 	     *  viewHolder : the viewHolder of swiped cards
 	     *  t : the data of swiped cards from dataList
 	     *  direction : CardConfig.SWIPED_LEFT means swiped from left；CardConfig.SWIPED_RIGHT means swiped from right
