@@ -9,6 +9,10 @@ CardSwipeLayout - Use RecyclerView to achieve card swipe layout , like [Tantan](
 
 ![screenshot.gif](https://github.com/yuqirong/CardSwipeLayout/blob/master/screenshots/screenshot.gif)
 
+##Blog
+
+[《玩转仿探探卡片式滑动效果》](http://yuqirong.me/2017/03/05/%E7%8E%A9%E8%BD%AC%E4%BB%BF%E6%8E%A2%E6%8E%A2%E5%8D%A1%E7%89%87%E5%BC%8F%E6%BB%91%E5%8A%A8%E6%95%88%E6%9E%9C/)
+
 ##Usage
 
 ###step 1
