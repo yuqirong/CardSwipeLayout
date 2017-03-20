@@ -1,21 +1,21 @@
-#CardSwipeLayout
+# CardSwipeLayout
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/mit-license.php)
 
-##Introduction
+## Introduction
 CardSwipeLayout - Use RecyclerView to achieve card swipe layout , like [Tantan](http://tantanapp.com/) .
 
-##Screenshot
+## Screenshot
 
 ![screenshot.gif](https://github.com/yuqirong/CardSwipeLayout/blob/master/screenshots/screenshot.gif)
 
-##Blog
+## Blog
 
 [《玩转仿探探卡片式滑动效果》](http://yuqirong.me/2017/03/05/%E7%8E%A9%E8%BD%AC%E4%BB%BF%E6%8E%A2%E6%8E%A2%E5%8D%A1%E7%89%87%E5%BC%8F%E6%BB%91%E5%8A%A8%E6%95%88%E6%9E%9C/)
 
-##Usage
+## Usage
 
-###step 1
+### step 1
 
 For build.gradle :
 
@@ -30,7 +30,7 @@ Or Maven :
 	  <type>pom</type>
 	</dependency>
 
-###step 2
+### step 2
 
 init RecyclerView firstly :
 
@@ -39,7 +39,7 @@ RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 recyclerView.setAdapter(...);
 ```
 
-###step 3
+### step 3
 
 then set `CardLayoutManager` for RecyclerView and `CardItemTouchHelperCallback` for ItemTouchHelper . In addition , don't forget set `OnSwipeListener` for `CardItemTouchHelperCallback` :
 
@@ -88,11 +88,11 @@ Finally , enjoy it !!!
 
 If you have any questions , you can leave a message in [Issues](https://github.com/yuqirong/CardSwipeLayout/issues).
 
-##Contact Me
+## Contact Me
 * Email : <yqr271228943@gmail.com>
 * Weibo : [@活得好像一条狗](http://weibo.com/yyyuqirong)
 
-##License
+## License
 
 	MIT License
 	
