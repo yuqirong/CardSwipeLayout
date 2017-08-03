@@ -8,6 +8,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import static me.yuqirong.cardswipelayout.Utils.checkIsNull;
+
 /**
  * @author yuqirong
  */
@@ -18,15 +20,8 @@ public class CardLayoutManager extends RecyclerView.LayoutManager {
     private ItemTouchHelper mItemTouchHelper;
 
     public CardLayoutManager(@NonNull RecyclerView recyclerView, @NonNull ItemTouchHelper itemTouchHelper) {
-        this.mRecyclerView = checkIsNull(recyclerView);
-        this.mItemTouchHelper = checkIsNull(itemTouchHelper);
-    }
-
-    private <T> T checkIsNull(T t) {
-        if (t == null) {
-            throw new NullPointerException();
-        }
-        return t;
+        this.mRecyclerView = checkIsNull(recyclerView, "recyclerView == null");
+        this.mItemTouchHelper = checkIsNull(itemTouchHelper, "itemTouchHelper == null");
     }
 
     @Override
