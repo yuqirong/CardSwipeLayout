@@ -25,10 +25,11 @@ import me.yuqirong.cardswipelayout.OnSwipeListener;
  * @author yuqirong
  */
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, OnSwipeListener<Integer> {
 
     private List<Integer> list = new ArrayList<>();
     private CardItemTouchHelperCallback<Integer> cardCallback;
+    private CardRecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,51 +44,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ImageButton hateButton = (ImageButton) findViewById(R.id.hate_button);
         likeButton.setOnClickListener(this);
         hateButton.setOnClickListener(this);
-        final CardRecyclerView recyclerView = (CardRecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = (CardRecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(new MyAdapter());
+
         cardCallback = new CardItemTouchHelperCallback<>(recyclerView, recyclerView.getAdapter(), list);
-        cardCallback.setOnSwipedListener(new OnSwipeListener<Integer>() {
-
-            @Override
-            public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {
-                MyAdapter.MyViewHolder myHolder = (MyAdapter.MyViewHolder) viewHolder;
-                viewHolder.itemView.setAlpha(1 - Math.abs(ratio) * 0.2f);
-                if (direction == CardConfig.SWIPING_LEFT) {
-                    myHolder.dislikeImageView.setAlpha(Math.abs(ratio));
-                } else if (direction == CardConfig.SWIPING_RIGHT) {
-                    myHolder.likeImageView.setAlpha(Math.abs(ratio));
-                } else {
-                    myHolder.dislikeImageView.setAlpha(0f);
-                    myHolder.likeImageView.setAlpha(0f);
-                }
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, Integer o, int direction) {
-                MyAdapter.MyViewHolder myHolder = (MyAdapter.MyViewHolder) viewHolder;
-                viewHolder.itemView.setAlpha(1f);
-                myHolder.dislikeImageView.setAlpha(0f);
-                myHolder.likeImageView.setAlpha(0f);
-                Toast.makeText(MainActivity.this, direction == CardConfig.SWIPED_LEFT ? "swiped left" : "swiped right", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onSwipedClear() {
-                Toast.makeText(MainActivity.this, "data clear", Toast.LENGTH_SHORT).show();
-                recyclerView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        initData();
-                        recyclerView.getAdapter().notifyDataSetChanged();
-                    }
-                }, 3000L);
-            }
-
-        });
+        cardCallback.setOnSwipedListener(this);
         final ItemTouchHelper touchHelper = new ItemTouchHelper(cardCallback);
         final CardLayoutManager cardLayoutManager = new CardLayoutManager(recyclerView, touchHelper);
         recyclerView.setLayoutManager(cardLayoutManager);
+        recyclerView.addOnItemTouchListener(new OnItemClickListener(recyclerView) {
+            @Override
+            public void onItemLongClick(RecyclerView.ViewHolder viewHolder, int position) {
+
+            }
+
+            @Override
+            public void onItemClick(RecyclerView.ViewHolder viewHolder, int position) {
+                Toast.makeText(MainActivity.this, "position = " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
         touchHelper.attachToRecyclerView(recyclerView);
     }
 
@@ -111,6 +87,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 cardCallback.handleCardSwipe(CardConfig.SWIPING_LEFT, 300L);
                 break;
         }
+    }
+
+    @Override
+    public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {
+        MyAdapter.MyViewHolder myHolder = (MyAdapter.MyViewHolder) viewHolder;
+        viewHolder.itemView.setAlpha(1 - Math.abs(ratio) * 0.2f);
+        if (direction == CardConfig.SWIPING_LEFT) {
+            myHolder.dislikeImageView.setAlpha(Math.abs(ratio));
+        } else if (direction == CardConfig.SWIPING_RIGHT) {
+            myHolder.likeImageView.setAlpha(Math.abs(ratio));
+        } else {
+            myHolder.dislikeImageView.setAlpha(0f);
+            myHolder.likeImageView.setAlpha(0f);
+        }
+    }
+
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder viewHolder, Integer o, int direction) {
+        MyAdapter.MyViewHolder myHolder = (MyAdapter.MyViewHolder) viewHolder;
+        viewHolder.itemView.setAlpha(1f);
+        myHolder.dislikeImageView.setAlpha(0f);
+        myHolder.likeImageView.setAlpha(0f);
+        Toast.makeText(MainActivity.this, direction == CardConfig.SWIPED_LEFT ? "swiped left" : "swiped right", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSwipedClear() {
+        Toast.makeText(MainActivity.this, "data clear", Toast.LENGTH_SHORT).show();
+        recyclerView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                initData();
+                recyclerView.getAdapter().notifyDataSetChanged();
+            }
+        }, 3000L);
     }
 
     private class MyAdapter extends RecyclerView.Adapter {
