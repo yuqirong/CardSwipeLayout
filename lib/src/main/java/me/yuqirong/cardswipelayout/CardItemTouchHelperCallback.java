@@ -97,24 +97,14 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
             }
             itemView.setRotation(ratio * CardConfig.DEFAULT_ROTATE_DEGREE);
             int childCount = recyclerView.getChildCount();
-            // 当数据源个数大于最大显示数时
-            if (childCount > CardConfig.DEFAULT_SHOW_ITEM) {
-                for (int position = 1; position < childCount - 1; position++) {
-                    int index = childCount - position - 1;
-                    View view = recyclerView.getChildAt(position);
-                    view.setScaleX(1 - index * CardConfig.DEFAULT_SCALE + Math.abs(ratio) * CardConfig.DEFAULT_SCALE);
-                    view.setScaleY(1 - index * CardConfig.DEFAULT_SCALE + Math.abs(ratio) * CardConfig.DEFAULT_SCALE);
-                    view.setTranslationY((index - Math.abs(ratio)) * itemView.getMeasuredHeight() / CardConfig.DEFAULT_TRANSLATE_Y);
-                }
-            } else {
-                // 当数据源个数小于或等于最大显示数时
-                for (int position = 0; position < childCount - 1; position++) {
-                    int index = childCount - position - 1;
-                    View view = recyclerView.getChildAt(position);
-                    view.setScaleX(1 - index * CardConfig.DEFAULT_SCALE + Math.abs(ratio) * CardConfig.DEFAULT_SCALE);
-                    view.setScaleY(1 - index * CardConfig.DEFAULT_SCALE + Math.abs(ratio) * CardConfig.DEFAULT_SCALE);
-                    view.setTranslationY((index - Math.abs(ratio)) * itemView.getMeasuredHeight() / CardConfig.DEFAULT_TRANSLATE_Y);
-                }
+            // 当数据源个数大于最大显示数时 position = 1
+            // 当数据源个数小于或等于最大显示数时 position = 0
+            for (int position = childCount > CardConfig.DEFAULT_SHOW_ITEM ? 1 : 0; position < childCount - 1; position++) {
+                int index = childCount - position - 1;
+                View view = recyclerView.getChildAt(position);
+                view.setScaleX(1 - index * CardConfig.DEFAULT_SCALE + Math.abs(ratio) * CardConfig.DEFAULT_SCALE);
+                view.setScaleY(1 - index * CardConfig.DEFAULT_SCALE + Math.abs(ratio) * CardConfig.DEFAULT_SCALE);
+                view.setTranslationY((index - Math.abs(ratio)) * itemView.getMeasuredHeight() / CardConfig.DEFAULT_TRANSLATE_Y);
             }
             if (mListener != null) {
                 if (ratio != 0) {
