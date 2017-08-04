@@ -15,8 +15,6 @@ CardSwipeLayout - Use RecyclerView to achieve card swipe layout , like [Tantan](
 
 ## Usage
 
-### step 1
-
 For build.gradle :
 
 	compile 'me.yuqirong:cardswipelayout:1.0.0'
@@ -30,12 +28,23 @@ Or Maven :
 	  <type>pom</type>
 	</dependency>
 
+### step 1
+
+in layout xml :
+
+``` java
+<me.yuqirong.cardswipelayout.CardRecyclerView
+    android:id="@+id/recyclerView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+```
+
 ### step 2
 
 init RecyclerView firstly :
 
 ``` java
-RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+CardRecyclerView recyclerView = (CardRecyclerView) findViewById(R.id.recyclerView);
 recyclerView.setAdapter(...);
 ```
 
@@ -45,8 +54,9 @@ then set `CardLayoutManager` for RecyclerView and `CardItemTouchHelperCallback` 
 
 ``` java
 // dataList means dataSource for adapter
-CardItemTouchHelperCallback cardCallback = new CardItemTouchHelperCallback(recyclerView.getAdapter(), dataList);
-ItemTouchHelper touchHelper = new ItemTouchHelper(cardCallback); CardLayoutManager cardLayoutManager = new CardLayoutManager(recyclerView, touchHelper);
+CardItemTouchHelperCallback cardCallback = new CardItemTouchHelperCallback(recyclerView, recyclerView.getAdapter(), dataList);
+ItemTouchHelper touchHelper = new ItemTouchHelper(cardCallback);
+CardLayoutManager cardLayoutManager = new CardLayoutManager(recyclerView, touchHelper);
 recyclerView.setLayoutManager(cardLayoutManager);
 touchHelper.attachToRecyclerView(recyclerView);
 cardCallback.setOnSwipedListener(new OnSwipeListener<T>() {
@@ -64,13 +74,13 @@ cardCallback.setOnSwipedListener(new OnSwipeListener<T>() {
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, T t, int direction) {
-	    /**
-	     *  will callback when the card swiped from screen by user
-	     *  you can also clean animation from the itemview of viewHolder in this method
-	     *  viewHolder : the viewHolder of swiped cards
-	     *  t : the data of swiped cards from dataList
-	     *  direction : CardConfig.SWIPED_LEFT means swiped from left；CardConfig.SWIPED_RIGHT means swiped from right
-	     */
+        /**
+         *  will callback when the card swiped from screen by user
+         *  you can also clean animation from the itemview of viewHolder in this method
+         *  viewHolder : the viewHolder of swiped cards
+         *  t : the data of swiped cards from dataList
+         *  direction : CardConfig.SWIPED_LEFT means swiped from left；CardConfig.SWIPED_RIGHT means swiped from right
+         */
     }
 
     @Override
@@ -83,6 +93,25 @@ cardCallback.setOnSwipedListener(new OnSwipeListener<T>() {
 
 });
 ```
+
+### step 4
+
+If you need to click the button to swipe card, so you can call this method :
+
+``` java
+handleCardSwipe(int flag, long duration)
+```
+
+or
+
+``` java
+handleCardSwipe(int flag, long duration, Interpolator interpolator)
+```
+
+* flag : CardConfig.SWIPING_LEFT or CardConfig.SWIPING_RIGHT ;
+* duration : the length of the animation ;
+* interpolator : the interpolator to be used by this animation ;
+
 
 Finally , enjoy it !!!
 
