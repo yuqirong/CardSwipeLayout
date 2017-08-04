@@ -8,7 +8,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initView() {
-        Button likeButton = (Button) findViewById(R.id.like_button);
-        Button hateButton = (Button) findViewById(R.id.hate_button);
+        ImageButton likeButton = (ImageButton) findViewById(R.id.like_button);
+        ImageButton hateButton = (ImageButton) findViewById(R.id.hate_button);
         likeButton.setOnClickListener(this);
         hateButton.setOnClickListener(this);
         final CardRecyclerView recyclerView = (CardRecyclerView) findViewById(R.id.recyclerView);

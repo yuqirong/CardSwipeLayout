@@ -20,17 +20,25 @@
         android:paddingBottom="20dp"
         android:paddingTop="20dp">
 
-        <Button
+        <ImageButton
             android:id="@+id/hate_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="hate" />
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/img_buttons_hate_selector" />
 
-        <Button
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
             android:id="@+id/like_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="like" />
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:background="@null"
+            android:scaleType="centerInside"
+            android:src="@drawable/img_buttons_like_selector" />
 
     </LinearLayout>
 
