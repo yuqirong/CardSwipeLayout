@@ -18,6 +18,7 @@ import java.util.List;
 import me.yuqirong.cardswipelayout.CardConfig;
 import me.yuqirong.cardswipelayout.CardItemTouchHelperCallback;
 import me.yuqirong.cardswipelayout.CardLayoutManager;
+import me.yuqirong.cardswipelayout.CardRecyclerView;
 import me.yuqirong.cardswipelayout.OnSwipeListener;
 
 
@@ -39,10 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button hateButton = (Button) findViewById(R.id.hate_button);
         likeButton.setOnClickListener(this);
         hateButton.setOnClickListener(this);
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        final CardRecyclerView recyclerView = (CardRecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(new MyAdapter());
-        cardCallback = new CardItemTouchHelperCallback<>(recyclerView.getAdapter(), list);
+        cardCallback = new CardItemTouchHelperCallback<>(recyclerView, recyclerView.getAdapter(), list);
         cardCallback.setOnSwipedListener(new OnSwipeListener<Integer>() {
 
             @Override

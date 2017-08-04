@@ -23,16 +23,17 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
     private final RecyclerView.Adapter adapter;
     private List<T> dataList;
     private OnSwipeListener<T> mListener;
-    private Canvas canvas;
-    private RecyclerView recyclerView;
+    private CardRecyclerView recyclerView;
     ValueAnimator swipeAnimator;
 
-    public CardItemTouchHelperCallback(@NonNull RecyclerView.Adapter adapter, @NonNull List<T> dataList) {
-        this.adapter = checkIsNull(adapter, "adapter == null");
-        this.dataList = checkIsNull(dataList, "dataList == null");
+    public CardItemTouchHelperCallback(@NonNull CardRecyclerView recyclerView,
+                                       @NonNull RecyclerView.Adapter adapter, @NonNull List<T> dataList) {
+        this(recyclerView, adapter, dataList, null);
     }
 
-    public CardItemTouchHelperCallback(@NonNull RecyclerView.Adapter adapter, @NonNull List<T> dataList, OnSwipeListener<T> listener) {
+    public CardItemTouchHelperCallback(@NonNull CardRecyclerView recyclerView, @NonNull RecyclerView.Adapter adapter,
+                                       @NonNull List<T> dataList, OnSwipeListener<T> listener) {
+        this.recyclerView = checkIsNull(recyclerView, "recyclerView == null");
         this.adapter = checkIsNull(adapter, "adapter == null");
         this.dataList = checkIsNull(dataList, "dataList == null");
         this.mListener = listener;
@@ -85,8 +86,6 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
                             float dX, float dY, int actionState, boolean isCurrentlyActive) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-        this.canvas = c;
-        this.recyclerView = recyclerView;
         View itemView = viewHolder.itemView;
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
             float ratio = dX / getThreshold(recyclerView, viewHolder);
@@ -145,12 +144,12 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
         if (swipeAnimator != null && swipeAnimator.isStarted()) {
             return;
         }
-        final RecyclerView recyclerView = checkIsNull(this.recyclerView, "recyclerView  == null");
+        final CardRecyclerView recyclerView = checkIsNull(this.recyclerView, "recyclerView  == null");
+        final Canvas canvas = checkIsNull(this.recyclerView.getCanvas(), "canvas == null");
         final RecyclerView.ViewHolder viewHolder = recyclerView.findViewHolderForAdapterPosition(0);
         if (viewHolder == null) {
             return;
         }
-        final Canvas c = checkIsNull(this.canvas, "canvas == null");
         if (flag == CardConfig.SWIPING_LEFT) {
             swipeAnimator = ValueAnimator.ofFloat(0, -recyclerView.getWidth() / 2);
         } else if (flag == CardConfig.SWIPING_RIGHT) {
@@ -165,7 +164,7 @@ public class CardItemTouchHelperCallback<T> extends ItemTouchHelper.Callback {
             public void onAnimationUpdate(ValueAnimator animation) {
 
                 float value = (float) animation.getAnimatedValue();
-                onChildDraw(c, recyclerView, viewHolder, value, 0, ItemTouchHelper.ACTION_STATE_SWIPE, true);
+                onChildDraw(canvas, recyclerView, viewHolder, value, 0, ItemTouchHelper.ACTION_STATE_SWIPE, true);
             }
         });
         swipeAnimator.addListener(new AnimatorListenerAdapter() {
