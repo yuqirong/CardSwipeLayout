@@ -7,9 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
 /**
- * @author maomao
- * @email qirong.yu@jubaobar.com
- * @date 2017-8-4
+ * @author yuqirong
  */
 
 public class CardRecyclerView extends RecyclerView {

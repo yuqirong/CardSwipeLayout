@@ -1,21 +1,19 @@
 package me.yuqirong.cardswipelayout;
 
 /**
- * @author maomao
- * @email qirong.yu@jubaobar.com
- * @date 2017-8-3
+ * @author yuqirong
  */
 
-public class Utils {
+class Utils {
 
-    public static <T> T checkIsNull(T t) {
+    static <T> T checkIsNull(T t) {
         if (t == null) {
             throw new NullPointerException();
         }
         return t;
     }
 
-    public static <T> T checkIsNull(T t, String errorMsg) {
+    static <T> T checkIsNull(T t, String errorMsg) {
         if (t == null) {
             throw new NullPointerException(errorMsg);
         }

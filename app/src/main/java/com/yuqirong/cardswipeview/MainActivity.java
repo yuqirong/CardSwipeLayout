@@ -21,6 +21,9 @@ import me.yuqirong.cardswipelayout.CardLayoutManager;
 import me.yuqirong.cardswipelayout.CardRecyclerView;
 import me.yuqirong.cardswipelayout.OnSwipeListener;
 
+/**
+ * @author yuqirong
+ */
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
